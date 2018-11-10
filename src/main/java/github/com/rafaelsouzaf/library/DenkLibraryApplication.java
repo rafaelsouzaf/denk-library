@@ -1,7 +1,6 @@
 package github.com.rafaelsouzaf.library;
 
 import github.com.rafaelsouzaf.library.model.Book;
-import github.com.rafaelsouzaf.library.model.BookAuthor;
 import github.com.rafaelsouzaf.library.model.User;
 import github.com.rafaelsouzaf.library.model.UserRole;
 import github.com.rafaelsouzaf.library.repository.BookRepository;
