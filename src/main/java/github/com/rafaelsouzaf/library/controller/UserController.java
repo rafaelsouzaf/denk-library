@@ -1,27 +1,39 @@
 package github.com.rafaelsouzaf.library.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import github.com.rafaelsouzaf.library.model.User;
+import github.com.rafaelsouzaf.library.model.UserRole;
+import github.com.rafaelsouzaf.library.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(path="/user")
 public class UserController {
 
-    @RequestMapping("/user/list")
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/list")
     public String index() {
+        userRepository.findAll().forEach(user -> {
+            System.out.println(user);
+        });
         return "Listing users!";
     }
 
-    @RequestMapping("/user/add")
+    @PostMapping("/add")
     public String add() {
+        User user = new User("Lero1", "Lero2", UserRole.VISITOR);
+        userRepository.save(user);
         return "Adding users!";
     }
 
-    @RequestMapping("/user/edit")
+    @PostMapping("/edit")
     public String edit() {
         return "Edit users!";
     }
 
-    @RequestMapping("/user/delete")
+    @DeleteMapping("/delete")
     public String delete() {
         return "Delete users!";
     }
