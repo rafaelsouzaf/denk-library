@@ -27,9 +27,8 @@ public class UserController {
     }
 
     @PutMapping("/add")
-    public String add(@RequestBody User user) {
-        userRepository.save(user);
-        return "Adding users!";
+    public User add(@RequestBody User user) {
+        return userRepository.save(user);
     }
 
     @PutMapping("/edit/{id}")
