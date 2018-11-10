@@ -16,7 +16,6 @@ public class UserController {
     @GetMapping("/list")
     public Iterable<User> findAll() {
         return userRepository.findAll();
-
     }
 
     @GetMapping("/get/{id}")
