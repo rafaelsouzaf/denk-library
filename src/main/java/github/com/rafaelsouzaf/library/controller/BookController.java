@@ -35,8 +35,9 @@ public class BookController {
     public Book edit(@RequestBody Book newBook, @PathVariable Long id ) throws BookNotFoundException {
         return bookRepository.findById(id)
                 .map(book -> {
+                    book.getBookAuthor().setFirstName(newBook.getBookAuthor().getFirstName());
+                    book.getBookAuthor().setLastName(newBook.getBookAuthor().getLastName());
                     book.setTitle(newBook.getTitle());
-                    book.setBookAuthor(newBook.getBookAuthor());
                     return bookRepository.save(book);
                 })
                 .orElseThrow(() -> new BookNotFoundException(id));

@@ -20,6 +20,8 @@ public class Book {
     @JoinColumn(name = "lib_book_author_id")
     private BookAuthor bookAuthor;
 
+    protected Book() {}
+
     public Book(String title, BookAuthor bookAuthor) {
         this.title = title;
         this.bookAuthor = bookAuthor;

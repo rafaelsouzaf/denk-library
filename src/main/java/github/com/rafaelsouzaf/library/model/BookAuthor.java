@@ -1,5 +1,7 @@
 package github.com.rafaelsouzaf.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,7 +23,10 @@ public class BookAuthor {
     private String lastName;
 
     @OneToOne(mappedBy = "bookAuthor")
+    @JsonIgnore
     private Book book;
+
+    protected BookAuthor() {}
 
     public BookAuthor(String firstName, String lastName) {
         this.firstName = firstName;
