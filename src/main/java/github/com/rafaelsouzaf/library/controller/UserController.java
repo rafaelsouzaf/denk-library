@@ -1,7 +1,7 @@
 package github.com.rafaelsouzaf.library.controller;
 
+import github.com.rafaelsouzaf.library.exception.UserNotFoundException;
 import github.com.rafaelsouzaf.library.model.User;
-import github.com.rafaelsouzaf.library.model.UserRole;
 import github.com.rafaelsouzaf.library.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,34 +14,42 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/list")
-    public String index() {
-        userRepository.findAll().forEach(user -> {
-            System.out.println(user);
-        });
-        return "Listing users!";
+    public Iterable<User> findAll() {
+        return userRepository.findAll();
+
     }
 
-    @PostMapping("/add")
-    public String add() {
-        User user = new User("Lero1", "Lero2", null, UserRole.VISITOR);
+    @GetMapping("/get/{id}")
+    public User get(@PathVariable Long id) throws UserNotFoundException {
+        return userRepository
+                .findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    @PutMapping("/add")
+    public String add(@RequestBody User user) {
         userRepository.save(user);
         return "Adding users!";
     }
 
-    @PostMapping("/edit")
-    public String edit() {
-        return "Edit users!";
+    @PutMapping("/edit/{id}")
+    public User edit(@RequestBody User newUser, @PathVariable Long id ) throws UserNotFoundException {
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setFirstName(newUser.getFirstName());
+                    user.setLastName(newUser.getLastName());
+                    user.setUserRole(newUser.getUserRole());
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    @DeleteMapping("/delete")
-    public String delete() {
-        return "Delete users!";
-    }
-
-    @GetMapping("/all")
-    public Iterable<User> findAll() {
-        return userRepository.findAll();
-
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id) throws UserNotFoundException {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException(id);
+        }
+        userRepository.deleteById(id);
     }
 
 }
