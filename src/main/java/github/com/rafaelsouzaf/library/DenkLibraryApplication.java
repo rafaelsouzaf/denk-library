@@ -26,7 +26,7 @@ public class DenkLibraryApplication {
     @Bean
     public CommandLineRunner demo(UserRepository repository) {
         return (args) -> {
-            // save a couple of customers
+            // save a couple of users
             repository.save(new User("Rafael", "Souza Fijalkowski", UserRole.ADMIN));
             repository.save(new User("Chloe", "O'Brian", UserRole.LIBRARIAN));
             repository.save(new User("Jack", "Bauer", UserRole.VISITOR));
