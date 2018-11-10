@@ -4,7 +4,6 @@ import github.com.rafaelsouzaf.library.model.Book;
 import github.com.rafaelsouzaf.library.model.BookAuthor;
 import github.com.rafaelsouzaf.library.model.User;
 import github.com.rafaelsouzaf.library.model.UserRole;
-import github.com.rafaelsouzaf.library.repository.BookAuthorRepository;
 import github.com.rafaelsouzaf.library.repository.BookRepository;
 import github.com.rafaelsouzaf.library.repository.UserRepository;
 import org.slf4j.Logger;
@@ -14,16 +13,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @SpringBootApplication
-public class DenkLibraryApplication {
+public class App {
 
-    private static final Logger log = LoggerFactory.getLogger(DenkLibraryApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(DenkLibraryApplication.class, args);
+        SpringApplication.run(App.class, args);
         log.info("REST SERVER IS STARTED.");
     }
 
