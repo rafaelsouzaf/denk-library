@@ -1,6 +1,8 @@
 package github.com.rafaelsouzaf.library.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "lib_user")
@@ -9,9 +11,19 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    @NotNull
+    @Size(max=100)
     private String firstName;
+
+    @NotNull
+    @Size(max=100)
     private String lastName;
+
+    @NotNull
     private UserRole userRole;
+
+    @NotNull
     private String password;
 
     protected User() {}

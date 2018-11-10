@@ -1,6 +1,8 @@
 package github.com.rafaelsouzaf.library.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "lib_book")
@@ -10,14 +12,17 @@ public class Book {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    @Size(max=100)
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private BookAuthor author;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lib_book_author_id")
+    private BookAuthor bookAuthor;
 
-    public Book(String title) {
+    public Book(String title, BookAuthor bookAuthor) {
         this.title = title;
+        this.bookAuthor = bookAuthor;
     }
 
     public Long getId() {
@@ -36,12 +41,11 @@ public class Book {
         this.title = title;
     }
 
-    public BookAuthor getAuthor() {
-        return author;
+    public BookAuthor getBookAuthor() {
+        return bookAuthor;
     }
 
-    public void setAuthor(BookAuthor author) {
-        this.author = author;
+    public void setBookAuthor(BookAuthor bookAuthor) {
+        this.bookAuthor = bookAuthor;
     }
-
 }

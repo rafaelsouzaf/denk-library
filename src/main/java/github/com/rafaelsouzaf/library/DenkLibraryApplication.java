@@ -1,8 +1,10 @@
 package github.com.rafaelsouzaf.library;
 
 import github.com.rafaelsouzaf.library.model.Book;
+import github.com.rafaelsouzaf.library.model.BookAuthor;
 import github.com.rafaelsouzaf.library.model.User;
 import github.com.rafaelsouzaf.library.model.UserRole;
+import github.com.rafaelsouzaf.library.repository.BookAuthorRepository;
 import github.com.rafaelsouzaf.library.repository.BookRepository;
 import github.com.rafaelsouzaf.library.repository.UserRepository;
 import org.slf4j.Logger;
@@ -11,6 +13,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class DenkLibraryApplication {
@@ -23,26 +28,20 @@ public class DenkLibraryApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(UserRepository repository, BookRepository bookRepository) {
+    public CommandLineRunner demo(UserRepository repository,
+                                  BookRepository bookRepository) {
         return (args) -> {
-            // save a couple of users
+
             repository.save(new User("Rafael", "Souza Fijalkowski", "xyxy", UserRole.ADMIN));
             repository.save(new User("Chloe", "O'Brian", "xyxy", UserRole.LIBRARIAN));
             repository.save(new User("Jack", "Bauer", "xyxy", UserRole.VISITOR));
             repository.save(new User("Kim", "Bauer", "xyxy", UserRole.VISITOR));
             repository.save(new User("David", "Palmer", "xyxy", UserRole.VISITOR));
-            repository.save(new User("Michelle", "Dessler"));
 
-            Book book1 = new Book("titulo do livro aqui");
-//            book1.setAuthor(new BookAuthor("John", "Coffee"));
-
-            Book book2 = new Book("titulo do livro aqui");
-//            book2.setAuthor(new BookAuthor("Maria", "Pé"));
-
-            bookRepository.save(book1);
-            bookRepository.save(book2);
-
-
+            bookRepository.save(new Book("book title 1", new BookAuthor("John 1", "Bingo")));
+            bookRepository.save(new Book("book title 2", new BookAuthor("John 2", "Bingo")));
+            bookRepository.save(new Book("book title 3", new BookAuthor("John 3", "Bingo")));
+            bookRepository.save(new Book("book title 4", new BookAuthor("John 4", "Bingo")));
 
         };
     }
