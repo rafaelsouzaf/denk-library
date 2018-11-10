@@ -23,7 +23,7 @@ public class UserController {
 
     @PostMapping("/add")
     public String add() {
-        User user = new User("Lero1", "Lero2", UserRole.VISITOR);
+        User user = new User("Lero1", "Lero2", null, UserRole.VISITOR);
         userRepository.save(user);
         return "Adding users!";
     }
@@ -36,6 +36,12 @@ public class UserController {
     @DeleteMapping("/delete")
     public String delete() {
         return "Delete users!";
+    }
+
+    @GetMapping("/all")
+    public Iterable<User> findAll() {
+        return userRepository.findAll();
+
     }
 
 }

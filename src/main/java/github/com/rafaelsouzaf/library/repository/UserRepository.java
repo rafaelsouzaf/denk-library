@@ -1,9 +1,9 @@
 package github.com.rafaelsouzaf.library.repository;
 
-import java.util.List;
-
 import github.com.rafaelsouzaf.library.model.User;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
