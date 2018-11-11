@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/user")
+@Secured("ROLE_ADMIN")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/list")
-    @Secured("ROLE_ADMIN")
     public Iterable<User> findAll() {
         return userRepository.findAll();
     }
