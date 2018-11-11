@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "lib_book_author")
@@ -22,9 +24,9 @@ public class BookAuthor {
     @Size(max=100)
     private String lastName;
 
-    @OneToOne(mappedBy = "bookAuthor")
+    @ManyToMany(mappedBy = "bookAuthor")
     @JsonIgnore
-    private Book book;
+    private Set<Book> book = new HashSet<>();
 
     protected BookAuthor() {}
 
@@ -57,11 +59,11 @@ public class BookAuthor {
         this.lastName = lastName;
     }
 
-    public Book getBook() {
+    public Set<Book> getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Set<Book> book) {
         this.book = book;
     }
 }

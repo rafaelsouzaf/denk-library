@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "lib_book")
@@ -20,15 +22,21 @@ public class Book {
     @Temporal(TemporalType.TIMESTAMP)
     private Date releaseDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "lib_book_author_id")
-    private BookAuthor bookAuthor;
+
+    @JoinTable(
+            name = "Book_Author",
+            joinColumns = { @JoinColumn(name = "book_id") },
+            inverseJoinColumns = { @JoinColumn(name = "author_id") }
+    )
+    private Set<BookAuthor> bookAuthor = new HashSet<>();
 
     protected Book() {}
 
     public Book(String title, BookAuthor bookAuthor) {
         this.title = title;
-        this.bookAuthor = bookAuthor;
+        this.bookAuthor.add(bookAuthor);
         this.releaseDate = new Date();
     }
 
@@ -48,11 +56,11 @@ public class Book {
         this.title = title;
     }
 
-    public BookAuthor getBookAuthor() {
+    public Set<BookAuthor> getBookAuthor() {
         return bookAuthor;
     }
 
-    public void setBookAuthor(BookAuthor bookAuthor) {
+    public void setBookAuthor(Set<BookAuthor> bookAuthor) {
         this.bookAuthor = bookAuthor;
     }
 
