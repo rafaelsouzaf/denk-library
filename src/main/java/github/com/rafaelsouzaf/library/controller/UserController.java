@@ -4,6 +4,7 @@ import github.com.rafaelsouzaf.library.exception.UserNotFoundException;
 import github.com.rafaelsouzaf.library.model.User;
 import github.com.rafaelsouzaf.library.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,6 +15,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/list")
+    @Secured("ROLE_ADMIN")
     public Iterable<User> findAll() {
         return userRepository.findAll();
     }
