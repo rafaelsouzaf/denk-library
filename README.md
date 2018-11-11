@@ -1,21 +1,33 @@
 # Denk-library
 
-Denk library is a restfull crud system to manage a virtual book library. It was made by learning and practicing Spring framework.
+Denk library is a restful crud system to manage a virtual book library. It was made by learning and practicing Spring framework.
 
 At this moment you can do:
 
   - List/Create/Edit/Delete users.
   - List/Create/Edit/Delete books and author books.
+  - Manipulate the login/logout basically.
+  - Access restricted interfaces with the correct Role.
 
-### Docker Postgres and PgAdmin4
+### Docker (Postgres and PgAdmin4)
 
 ``
 docker-compose up
 ``
 
+#### PgAdmin4
+- Link: http://localhost:5050/browser/
+- PgAdmin4 User: pgadmin4@pgadmin.org
+- PgAdmin4 Password: admin
+
+#### Postgres DB 
+- Host: postgres (Docker's hostname)
+- User: postgres
+- Pass: admin
+
 ### cURL commands
 
-Ar this moment the project does't have graphical interface, so to try it you can use `curl`.
+Ar this moment the project does't have graphical interface, so to try it you can use `curl` or Postman [https://www.getpostman.com/].
 
 #### User
 | Action | COMMAND |
