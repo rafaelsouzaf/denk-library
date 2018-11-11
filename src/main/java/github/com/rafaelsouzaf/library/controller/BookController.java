@@ -16,7 +16,6 @@ public class BookController {
     @GetMapping("/list")
     public Iterable<Book> findAll() {
         return bookRepository.findAll();
-
     }
 
     @GetMapping("/get/{id}")
