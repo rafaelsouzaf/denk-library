@@ -1,5 +1,7 @@
 package github.com.rafaelsouzaf.library.security;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -8,10 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableGlobalMethodSecurity(
-    securedEnabled = true,
+    securedEnabled = false,
     jsr250Enabled = true,
     prePostEnabled = true
 )
+@EnableAutoConfiguration(exclude = {
+        SecurityAutoConfiguration.class
+})
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 //    @Bean
