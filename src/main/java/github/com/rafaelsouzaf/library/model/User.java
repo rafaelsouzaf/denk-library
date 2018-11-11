@@ -1,5 +1,7 @@
 package github.com.rafaelsouzaf.library.model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,15 +30,11 @@ public class User {
 
     protected User() {}
 
-    public User(String firstName, String lastName) {
-        this(firstName, lastName, null,  UserRole.EVERYONE);
-    }
-
     public User(String firstName, String lastName, String password, UserRole userRole) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
         this.userRole = userRole;
+        this.setPassword(password);
     }
 
     public Long getId() {
@@ -76,6 +74,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(password);
     }
 }
