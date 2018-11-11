@@ -40,7 +40,7 @@ public class BookController {
         return bookRepository.save(user);
     }
 
-    @PutMapping("/edit/{id}")
+    @PostMapping("/edit/{id}")
     public Book edit(@RequestBody Book newBook, @PathVariable Long id ) throws BookNotFoundException {
         return bookRepository.findById(id)
                 .map(book -> {

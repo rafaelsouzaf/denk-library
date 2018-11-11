@@ -32,7 +32,7 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    @PutMapping("/edit/{id}")
+    @PostMapping("/edit/{id}")
     public User edit(@RequestBody User newUser, @PathVariable Long id ) throws UserNotFoundException {
         return userRepository.findById(id)
                 .map(user -> {

@@ -35,7 +35,7 @@ Ar this moment the project does't have graphical interface, so to try it you can
 | LIST | `curl -X GET localhost:8080/user/list -H 'Content-type:application/json'` |
 | GET | `curl -X GET localhost:8080/user/get/2 -H 'Content-type:application/json'` |
 | ADD |`curl -X PUT localhost:8080/user/add -H 'Content-type:application/json' -d '{"firstName":"Samdwish","lastName":"Martelo","userRole":"LIBRARIAN","password":"xyxy2"}'` |
-| EDIT | `curl -X PUT localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
+| EDIT | `curl -X POST localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
 | DELETE | `curl -X DELETE localhost:8080/user/delete/2 -H 'Content-type:application/json'` |
 
 #### Book
@@ -46,8 +46,15 @@ Ar this moment the project does't have graphical interface, so to try it you can
 | LIST ORDER DESC | `curl -X GET localhost:8080/book/list/order/desc -H 'Content-type:application/json'` |
 | GET | `curl -X GET localhost:8080/book/get/6 -H 'Content-type:application/json'` |
 | ADD | `curl -X PUT localhost:8080/book/add -H 'Content-type:application/json' -d '{"title":"Samdwish Book", "bookAuthor": {"firstName":"Joanna", "lastName":"Fun"}}'` |
-| EDIT | `curl -X PUT localhost:8080/book/edit/6 -H 'Content-type:application/json' -d '{"title":"Samdwish Book Editable", "bookAuthor": {"firstName":"Joanna", "lastName":"Fun"}}'` |
+| EDIT | `curl -X POST localhost:8080/book/edit/6 -H 'Content-type:application/json' -d '{"title":"Samdwish Book Editable", "bookAuthor": {"firstName":"Joanna", "lastName":"Fun"}}'` |
 | DELETE | `curl -X DELETE localhost:8080/book/delete/6 -H 'Content-type:application/json'` |
+
+#### Borrow Books
+| Action | COMMAND |
+| ------ | ------ |
+| GET | `curl -X GET localhost:8080/borrow/get/17 -H 'Content-type:application/json'` |
+| ADD | `curl -X PUT localhost:8080/borrow/add -H 'Content-type:application/json' -d '{"bookId": 14, "userId": 2, "status": "AVAILABLE"}'` |
+| CHANGE STATUS | `curl -X POST localhost:8080/borrow/change-status/17/RENTED -H 'Content-type:application/json'` |
 
 #### Login/Logout
 | Action | COMMAND |
