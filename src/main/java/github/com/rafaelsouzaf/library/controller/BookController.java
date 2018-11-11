@@ -18,6 +18,16 @@ public class BookController {
         return bookRepository.findAll();
     }
 
+    @GetMapping("/list/order/asc")
+    public Iterable<Book> findAllOrderByASC() {
+        return bookRepository.findAllOrderByASC();
+    }
+
+    @GetMapping("/list/order/desc")
+    public Iterable<Book> findAllOrderByDESC() {
+        return bookRepository.findAllOrderByDESC();
+    }
+
     @GetMapping("/get/{id}")
     public Book get(@PathVariable Long id) throws BookNotFoundException {
         return bookRepository
