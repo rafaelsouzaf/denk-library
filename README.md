@@ -7,8 +7,12 @@ At this moment you can do:
   - List/Create/Get/Edit/Delete users.
   - List/Create/Get/Edit/Delete books and author books.
   - Add/Get/Change-Status borrow books.
-  - Manipulate the login/logout basically. (Not yet)
-  - Access restricted interfaces with the correct Role. (Not yet)
+  
+Next step:
+  
+  - @Secure() roles support.
+  - Unit tests.
+  - Visual interface?!
 
 ### Docker (Postgres and PgAdmin4)
 
