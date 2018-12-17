@@ -22,7 +22,7 @@ public enum UserRole {
      */
     VISITOR(3);
 
-    private int value;
+    private int value;  // TODO what is the value gonna be used for? So far it's the same as UserRole.ordinal
     UserRole(int value) {
         this.value = value;
     }

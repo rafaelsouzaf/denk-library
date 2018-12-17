@@ -34,6 +34,7 @@ public class BorrowController {
 
     @PostMapping("/change-status/{borrowId}/{newStatus}")
     public Borrow edit(@PathVariable Long borrowId, @PathVariable BorrowStatus newStatus) throws BorrowNotFoundException {
+        // TODO service layer may soon be needed; this will be where to put more logic, checks/ constraints, etc.
         return borrowRepository.findById(borrowId)
                 .map(borrow -> {
                     borrow.setStatus(newStatus);

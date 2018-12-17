@@ -14,4 +14,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     @Query("select a from Book a ORDER BY a.releaseDate DESC")
     List<Book> findAllOrderByDESC();
 
+
+    // TODO next step: Combine several filters; org.springframework.data.jpa.domain.Specification and javax.persistence.criteria.Predicate *may* be useful
 }

@@ -32,7 +32,7 @@ public class BookController {
     public Book get(@PathVariable Long id) throws BookNotFoundException {
         return bookRepository
                 .findById(id)
-                .orElseThrow(() -> new BookNotFoundException(id));
+                .orElseThrow(() -> new BookNotFoundException(id));  // TODO stacktraces are leaked to the client
     }
 
     @PutMapping("/add")
