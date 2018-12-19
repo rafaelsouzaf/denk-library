@@ -40,7 +40,7 @@ public class BorrowController {
                     borrow.setStatus(newStatus);
                     return borrowRepository.save(borrow);
                 })
-                .orElseThrow(() -> new UserNotFoundException(borrowId));
+                .orElseThrow(() -> new BorrowNotFoundException(borrowId));
     }
 
 }
