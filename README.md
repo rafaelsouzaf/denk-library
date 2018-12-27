@@ -31,9 +31,18 @@ _** To connect the PgAdmin container with the Postgres container, in the PgAdmin
 
 #### Running SpringBoot app
 
+DEV:
+
 `mvn spring-boot:run`
 
-_Or using the Spring Boot plugin in Intellij Idea._
+QA:
+
+`mvn spring-boot:run -Dspring.profiles.active=qa`
+
+PROD:
+
+`mvn spring-boot:run -Dspring.profiles.active=prod`
+
 
 ### cURL commands
 
