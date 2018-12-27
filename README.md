@@ -22,9 +22,18 @@ docker-compose up
 - PgAdmin4 Password: admin
 
 #### Postgres DB 
-- Host: postgres (Docker's hostname)
+- Host: postgres_container (Docker's hostname)
+- Database: postgres
 - User: postgres
 - Pass: admin
+
+_** To connect the PgAdmin container with the Postgres container, in the PgAdmin configuration we need to use `host: postgres_container` (the host is the container's name). The `localhost` or `127.0.0.1 does not work because in this case is connections between containers._
+
+#### Running SpringBoot app
+
+`mvn spring-boot:run`
+
+_Or using the Spring Boot plugin in Intellij Idea._
 
 ### cURL commands
 
@@ -37,7 +46,7 @@ Ar this moment the project does't have graphical interface, so to try it you can
 | GET | `curl -X GET localhost:8080/user/get/2 -H 'Content-type:application/json'` |
 | ADD |`curl -X PUT localhost:8080/user/add -H 'Content-type:application/json' -d '{"firstName":"Samdwish","lastName":"Martelo","userRole":"LIBRARIAN","password":"xyxy2"}'` |
 | EDIT | `curl -X POST localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
-| DELETE | `curl -X DELETE localhost:8080/user/delete/2 -H 'Content-type:application/json'` |
+| DELETE | `curl -X DELETE localhost:8080/user/delete/2 -H 'Content-type:application/json'` |`
 
 #### Book
 | Action | COMMAND |
