@@ -7,8 +7,8 @@ At this moment you can do:
   - List/Create/Get/Edit/Delete users.
   - List/Create/Get/Edit/Delete books and author books.
   - Add/Get/Change-Status borrow books.
-  - Manipulate the login/logout basically. (Not yet)
-  - Access restricted interfaces with the correct Role. (Not yet)
+  - Access restricted interfaces with the correct Role using Basic Auth (see examples).
+  - Manipulate the login/logout. (Not yet)
 
 ### Docker (Postgres and PgAdmin4)
 
@@ -27,7 +27,7 @@ docker-compose up
 - User: postgres
 - Pass: admin
 
-_** To connect the PgAdmin container with the Postgres container, in the PgAdmin configuration we need to use `host: postgres_container` (the host is the container's name). The `localhost` or `127.0.0.1 does not work because in this case is connections between containers._
+_** To connect the PgAdmin container with the Postgres container, in the PgAdmin configuration we need to use `host: postgres_container` (the host is the container's name). The `localhost` or `127.0.0.1` does not work because in this case is connections between containers.
 
 #### Running SpringBoot app
 
@@ -47,15 +47,6 @@ PROD:
 ### cURL commands
 
 Ar this moment the project does't have graphical interface, so to try it you can use `curl` or Postman [https://www.getpostman.com/].
-
-#### User
-| Action | COMMAND |
-| ------ | ------ |
-| LIST | `curl -X GET localhost:8080/user/list -H 'Content-type:application/json'` |
-| GET | `curl -X GET localhost:8080/user/get/2 -H 'Content-type:application/json'` |
-| ADD |`curl -X PUT localhost:8080/user/add -H 'Content-type:application/json' -d '{"firstName":"Samdwish","lastName":"Martelo","userRole":"LIBRARIAN","password":"xyxy2"}'` |
-| EDIT | `curl -X POST localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
-| DELETE | `curl -X DELETE localhost:8080/user/delete/2 -H 'Content-type:application/json'` |
 
 #### Book
 | Action | COMMAND |
@@ -77,8 +68,21 @@ Ar this moment the project does't have graphical interface, so to try it you can
 | ADD | `curl -X PUT localhost:8080/borrow/add -H 'Content-type:application/json' -d '{"bookId": 14, "userId": 2, "status": "AVAILABLE"}'` |
 | CHANGE STATUS | `curl -X POST localhost:8080/borrow/change-status/17/RENTED -H 'Content-type:application/json'` |
 
-#### Login/Logout
+#### User Administration (RESTRICTED, Access only with Basic Auth)
+
+To use the API below it's necessary to add the user and password in the HEAD. Without that the answer will be `Access denied`. See examples:
+
 | Action | COMMAND |
 | ------ | ------ |
-| LOGIN | `curl -X GET --user admin:password http://localhost:8080/user/list -H 'Content-type:application/json'` |
+| LIST | `curl -X GET --user admin:password localhost:8080/user/list -H 'Content-type:application/json'` |
+| GET | `curl -X GET --user admin:password localhost:8080/user/get/2 -H 'Content-type:application/json'` |
+| ADD |`curl -X PUT --user admin:password localhost:8080/user/add -H 'Content-type:application/json' -d '{"firstName":"Samdwish","lastName":"Martelo","userRole":"LIBRARIAN","password":"xyxy2"}'` |
+| EDIT | `curl -X POST --user admin:password localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
+| DELETE | `curl -X DELETE --user admin:password localhost:8080/user/delete/2 -H 'Content-type:application/json'` |
+
+
+#### Login/Logout (Pending... not ready yet)
+| Action | COMMAND |
+| ------ | ------ |
+| LOGIN |  |
 | LOGOUT | `curl -X GET http://localhost:8080/login/logout -H 'Content-type:application/json'` |
