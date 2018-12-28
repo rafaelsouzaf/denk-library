@@ -2,6 +2,7 @@ package github.com.rafaelsouzaf.library.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,12 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     public final ResponseEntity<ErrorMessage> handleUserNotFoundException(BorrowNotFoundException ex, WebRequest request) {
         ErrorMessage errorDetails = new ErrorMessage(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public final ResponseEntity<ErrorMessage> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
+        ErrorMessage errorDetails = new ErrorMessage(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
 
 }
