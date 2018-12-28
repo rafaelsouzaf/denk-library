@@ -27,7 +27,7 @@ public class App {
                                   BorrowRepository borrowRepository) {
         return (args) -> {
 
-            userRepository.save(new User("rafaelsouzaf@gmail.com", "Rafael", "Souza Fijalkowski", "xyxy", UserRole.ADMIN));
+            userRepository.save(new User("rafaelsouzaf@gmail.com", "Rafael", "Souza Fijalkowski", "admin", UserRole.ADMIN));
             userRepository.save(new User("chloe@gmail.com", "Chloe", "O'Brian", "xyxy", UserRole.LIBRARIAN));
             userRepository.save(new User("jack@gmail.com", "Jack", "Bauer", "xyxy", UserRole.VISITOR));
             userRepository.save(new User("kim@gmail.com", "Kim", "Bauer", "xyxy", UserRole.VISITOR));
