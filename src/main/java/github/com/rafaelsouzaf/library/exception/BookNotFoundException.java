@@ -9,4 +9,7 @@ public class BookNotFoundException extends RuntimeException {
     public BookNotFoundException(Long id) {
         super("Book not found: " + id);
     }
+    public BookNotFoundException(String msg) {
+        super("Book not found: " + msg);
+    }
 }
