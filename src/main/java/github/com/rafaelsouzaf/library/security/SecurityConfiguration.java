@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.sql.DataSource;
 
@@ -22,7 +23,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().csrf().disable();
+        /**
+         * Disabling cookies. It's important to avoid the cookie sessions.
+         */
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+        /**
+         * Disabling CSRF. It's necessary for use POST/PUT/DELETE http methods
+         * with Basic Authentication without SSL.
+         */
+        httpBasic().and().csrf().disable();
     }
 
     @Override
@@ -32,6 +41,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("select email as username, 'ROLE_ADMIN' as authority from lib_user where email=?")
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
-
 
 }
