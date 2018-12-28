@@ -15,6 +15,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+import static github.com.rafaelsouzaf.library.controller.BookSpecification.titleExact;
+import static org.springframework.data.jpa.domain.Specification.where;
+
 @RestController
 @RequestMapping(path="/book")
 public class BookController {
@@ -70,9 +73,23 @@ public class BookController {
 
     }
 
+    @GetMapping("/get/title/exact/{title}")
+    public List<Book> findByExactTitle(@PathVariable String title) throws BookNotFoundException {
+        if (!StringUtils.hasText(title)) {
+            throw new BookNotFoundException("Title can not be empty.");
+        }
+
+        List<Book> bookList = bookRepository.findAll(where(titleExact(title)));
+        if (bookList.size() == 0) {
+            throw new BookNotFoundException("Exact title not found.");
+        }
+        return bookList;
+
+    }
+
     @PutMapping("/add")
-    public Book add(@RequestBody Book user) {
-        return bookRepository.save(user);
+    public Book add(@RequestBody Book book) {
+        return bookRepository.save(book);
     }
 
     @PostMapping("/edit/{id}")
