@@ -9,6 +9,11 @@ At this moment you can do:
   - Add/Get/Change-Status borrow books.
   - Access restricted interfaces with the correct Role using Basic Auth (see examples).
   - Manipulate the login/logout. (Not yet)
+  
+Next step:
+  
+  - Unit tests.
+  - Visual interface?!
 
 ### Docker (Postgres and PgAdmin4)
 
