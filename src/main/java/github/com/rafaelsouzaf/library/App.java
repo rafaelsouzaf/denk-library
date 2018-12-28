@@ -27,18 +27,18 @@ public class App {
                                   BorrowRepository borrowRepository) {
         return (args) -> {
 
-            userRepository.save(new User("Rafael", "Souza Fijalkowski", "xyxy", UserRole.ADMIN));
-            userRepository.save(new User("Chloe", "O'Brian", "xyxy", UserRole.LIBRARIAN));
-            userRepository.save(new User("Jack", "Bauer", "xyxy", UserRole.VISITOR));
-            userRepository.save(new User("Kim", "Bauer", "xyxy", UserRole.VISITOR));
-            userRepository.save(new User("David", "Palmer", "xyxy", UserRole.VISITOR));
+            userRepository.save(new User("rafaelsouzaf@gmail.com", "Rafael", "Souza Fijalkowski", "xyxy", UserRole.ADMIN));
+            userRepository.save(new User("chloe@gmail.com", "Chloe", "O'Brian", "xyxy", UserRole.LIBRARIAN));
+            userRepository.save(new User("jack@gmail.com", "Jack", "Bauer", "xyxy", UserRole.VISITOR));
+            userRepository.save(new User("kim@gmail.com", "Kim", "Bauer", "xyxy", UserRole.VISITOR));
+            userRepository.save(new User("david@gmail.com", "David", "Palmer", "xyxy", UserRole.VISITOR));
 
             bookRepository.save(new Book("book title 1", new BookAuthor("John 1", "Bingo")));
             bookRepository.save(new Book("book title 2", new BookAuthor("John 2", "Bingo")));
             bookRepository.save(new Book("book title 3", new BookAuthor("John 3", "Bingo")));
             bookRepository.save(new Book("book title 4", new BookAuthor("John 4", "Bingo")));
 
-            User user = new User("Tom", "Bueno", "xyxy", UserRole.VISITOR);
+            User user = new User("tom@gmail.com", "Tom", "Bueno", "xyxy", UserRole.VISITOR);
             Book book = new Book("book title 4", new BookAuthor("John 4", "Bingo"));
             userRepository.save(user);
             bookRepository.save(book);

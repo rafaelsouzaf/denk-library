@@ -81,8 +81,8 @@ To use the API below it's necessary to add the user and password in the HEAD. Wi
 | ------ | ------ |
 | LIST | `curl -X GET --user admin:password localhost:8080/user/list -H 'Content-type:application/json'` |
 | GET | `curl -X GET --user admin:password localhost:8080/user/get/2 -H 'Content-type:application/json'` |
-| ADD |`curl -X PUT --user admin:password localhost:8080/user/add -H 'Content-type:application/json' -d '{"firstName":"Samdwish","lastName":"Martelo","userRole":"LIBRARIAN","password":"xyxy2"}'` |
-| EDIT | `curl -X POST --user admin:password localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
+| ADD |`curl -X PUT --user admin:password localhost:8080/user/add -H 'Content-type:application/json' -d '{"email":"sam@dwish.com", "firstName":"Samdwish","lastName":"Martelo","userRole":"LIBRARIAN","password":"xyxy2"}'` |
+| EDIT | `curl -X POST --user admin:password localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"email":"sambda@dwish.com", "firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
 | DELETE | `curl -X DELETE --user admin:password localhost:8080/user/delete/2 -H 'Content-type:application/json'` |
 
 

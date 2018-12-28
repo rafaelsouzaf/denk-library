@@ -36,6 +36,7 @@ public class UserController {
     public User edit(@RequestBody User newUser, @PathVariable Long id ) throws UserNotFoundException {
         return userRepository.findById(id)
                 .map(user -> {
+                    user.setEmail(newUser.getEmail());
                     user.setFirstName(newUser.getFirstName());
                     user.setLastName(newUser.getLastName());
                     user.setUserRole(newUser.getUserRole());

@@ -15,6 +15,10 @@ public class User {
     private Long id;
 
     @NotNull
+    @Size(max=500)
+    private String email;
+
+    @NotNull
     @Size(max=100)
     private String firstName;
 
@@ -30,7 +34,8 @@ public class User {
 
     protected User() {}
 
-    public User(String firstName, String lastName, String password, UserRole userRole) {
+    public User(String email, String firstName, String lastName, String password, UserRole userRole) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userRole = userRole;
@@ -55,6 +60,14 @@ public class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setLastName(String lastName) {
