@@ -3,27 +3,18 @@ package github.com.rafaelsouzaf.library.model;
 public enum UserRole {
 
     /**
-     * Login/logout
+     * Can do everything
      */
-    EVERYONE(0),
+    ROLE_ADMIN,
 
     /**
-     * Creates/Edits Users
+     * Can create/edits Books, lends books to user x or returns them
      */
-    ADMIN(1),
+    ROLE_LIBRARIAN,
 
     /**
-     * Create/Edits Books, lends books to user x or returns them
+     * Can lend a book
      */
-    LIBRARIAN(2),
+    ROLE_VISITOR
 
-    /**
-     * Lends books for himself
-     */
-    VISITOR(3);
-
-    private int value;
-    UserRole(int value) {
-        this.value = value;
-    }
 }

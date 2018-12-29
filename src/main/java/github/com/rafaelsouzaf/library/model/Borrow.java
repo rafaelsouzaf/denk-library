@@ -9,9 +9,11 @@ import java.util.Date;
 public class Borrow {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+    // TODO the old java.util.Date should not be used; https://www.baeldung.com/java-8-date-time-intro
+    // for older projects joda-time is the way to go; also make sure that TZ is stored in the database (even in a non-international project)
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     private Date date = new Date();
@@ -23,7 +25,7 @@ public class Borrow {
     private Long userId;
 
     @NotNull
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private BorrowStatus status;
 
     protected Borrow() {}

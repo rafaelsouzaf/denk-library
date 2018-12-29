@@ -27,22 +27,38 @@ public class App {
                                   BorrowRepository borrowRepository) {
         return (args) -> {
 
-            userRepository.save(new User("Rafael", "Souza Fijalkowski", "xyxy", UserRole.ADMIN));
-            userRepository.save(new User("Chloe", "O'Brian", "xyxy", UserRole.LIBRARIAN));
-            userRepository.save(new User("Jack", "Bauer", "xyxy", UserRole.VISITOR));
-            userRepository.save(new User("Kim", "Bauer", "xyxy", UserRole.VISITOR));
-            userRepository.save(new User("David", "Palmer", "xyxy", UserRole.VISITOR));
+            /*
+             * NEW USERS
+             */
+            userRepository.save(new User("admin@gmail.com", "Rafael", "Souza Fijalkowski", "admin", UserRole.ROLE_ADMIN, true));
+            userRepository.save(new User("librarian@gmail.com", "Chloe", "O'Brian", "librarian", UserRole.ROLE_LIBRARIAN, true));
+            userRepository.save(new User("visitor@gmail.com", "Chloe", "O'Brian", "visitor", UserRole.ROLE_VISITOR, true));
+            userRepository.save(new User("jack@gmail.com", "Jack", "Bauer", "xyxy", UserRole.ROLE_VISITOR, true));
+            userRepository.save(new User("kim@gmail.com", "Kim", "Bauer", "xyxy", UserRole.ROLE_VISITOR, true));
+            userRepository.save(new User("david@gmail.com", "David", "Palmer", "xyxy", UserRole.ROLE_VISITOR, true));
 
+            /*
+             * NEW BOOKS
+             */
             bookRepository.save(new Book("book title 1", new BookAuthor("John 1", "Bingo")));
             bookRepository.save(new Book("book title 2", new BookAuthor("John 2", "Bingo")));
             bookRepository.save(new Book("book title 3", new BookAuthor("John 3", "Bingo")));
             bookRepository.save(new Book("book title 4", new BookAuthor("John 4", "Bingo")));
 
-            User user = new User("Tom", "Bueno", "xyxy", UserRole.VISITOR);
+            /*
+             * RENT
+             */
+            User user = new User("tom@gmail.com", "Tom", "Bueno", "xyxy", UserRole.ROLE_VISITOR, true);
             Book book = new Book("book title 4", new BookAuthor("John 4", "Bingo"));
             userRepository.save(user);
             bookRepository.save(book);
             borrowRepository.save(new Borrow(book, user, BorrowStatus.AVAILABLE));
+
+            user = new User("gina@gmail.com", "Gina", "Boa", "xyxy", UserRole.ROLE_VISITOR, true);
+            book = new Book("book title new", new BookAuthor("Persa", "Boom"));
+            userRepository.save(user);
+            bookRepository.save(book);
+            borrowRepository.save(new Borrow(book, user, BorrowStatus.RENTED));
 
         };
     }
