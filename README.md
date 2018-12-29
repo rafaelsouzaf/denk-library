@@ -57,7 +57,7 @@ PROD:
 
 It's not the objective of this project create a visual interface to manage the data. I have 
 been working with web interfaces for many years and it's not a challenge for me. My main goal 
-with this project is to practice Spring Book framework.
+with this project is to practice Spring Boot framework.
 
 ### cURL commands
 
