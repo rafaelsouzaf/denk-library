@@ -4,6 +4,7 @@ import github.com.rafaelsouzaf.library.exception.BookNotFoundException;
 import github.com.rafaelsouzaf.library.model.Book;
 import github.com.rafaelsouzaf.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -88,11 +89,13 @@ public class BookController {
     }
 
     @PutMapping("/add")
+    @Secured({"ROLE_ADMIN", "ROLE_LIBRARIAN"})
     public Book add(@RequestBody Book book) {
         return bookRepository.save(book);
     }
 
     @PostMapping("/edit/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_LIBRARIAN"})
     public Book edit(@RequestBody Book newBook, @PathVariable Long id ) throws BookNotFoundException {
         return bookRepository.findById(id)
                 .map(book -> {
@@ -105,6 +108,7 @@ public class BookController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_LIBRARIAN"})
     public void delete(@PathVariable Long id) throws BookNotFoundException {
         if (!bookRepository.existsById(id)) {
             throw new BookNotFoundException(id);

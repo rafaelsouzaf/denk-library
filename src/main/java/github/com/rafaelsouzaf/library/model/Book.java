@@ -1,6 +1,7 @@
 package github.com.rafaelsouzaf.library.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -12,15 +13,15 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     @Size(max=100)
     private String title;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date releaseDate;
+    private Date releaseDate = new Date();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "lib_book_author_id")
@@ -37,7 +38,6 @@ public class Book {
     public Book(String title, BookAuthor bookAuthor) {
         this.title = title;
         this.bookAuthor.add(bookAuthor);
-        this.releaseDate = new Date();
     }
 
     public Long getId() {
@@ -71,4 +71,5 @@ public class Book {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
 }

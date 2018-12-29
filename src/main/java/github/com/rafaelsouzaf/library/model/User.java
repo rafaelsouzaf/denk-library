@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
@@ -29,7 +29,7 @@ public class User {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private UserRole userRole = UserRole.ROLE_EVERYONE;
+    private UserRole userRole = UserRole.ROLE_VISITOR;
 
     @NotEmpty
     private String password;

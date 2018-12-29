@@ -9,7 +9,7 @@ import java.util.Date;
 public class Borrow {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     // TODO the old java.util.Date should not be used; https://www.baeldung.com/java-8-date-time-intro
@@ -25,7 +25,7 @@ public class Borrow {
     private Long userId;
 
     @NotNull
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private BorrowStatus status;
 
     protected Borrow() {}
