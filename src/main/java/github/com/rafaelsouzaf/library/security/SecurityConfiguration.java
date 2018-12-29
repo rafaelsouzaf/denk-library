@@ -23,11 +23,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /**
-         * Disabling cookies. It's important to avoid the cookie sessions.
+        /*
+         * Disabling cookies. It's important to avoid the cookie sessions and with that
+         * validate the username/password for each request. It's not the best but works well
+         * with Basic Auth.
          */
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
-        /**
+        /*
          * Disabling CSRF. It's necessary for use POST/PUT/DELETE http methods
          * with Basic Authentication without SSL.
          */
@@ -37,8 +39,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select email as username, password, true as enabled from lib_user where email=?")
-                .authoritiesByUsernameQuery("select email as username, 'ROLE_ADMIN' as authority from lib_user where email=?")
+                .usersByUsernameQuery("select email as username, password, enabled from lib_user where email=?")
+                .authoritiesByUsernameQuery("select email as username, user_role as authority from lib_user where email=?")
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
 

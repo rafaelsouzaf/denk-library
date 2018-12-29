@@ -5,25 +5,21 @@ public enum UserRole {
     /**
      * Login/logout
      */
-    EVERYONE(0),
+    ROLE_EVERYONE,
 
     /**
      * Creates/Edits Users
      */
-    ADMIN(1),
+    ROLE_ADMIN,
 
     /**
      * Create/Edits Books, lends books to user x or returns them
      */
-    LIBRARIAN(2),
+    ROLE_LIBRARIAN,
 
     /**
      * Lends books for himself
      */
-    VISITOR(3);
+    ROLE_VISITOR
 
-    private int value;  // TODO what is the value gonna be used for? So far it's the same as UserRole.ordinal
-    UserRole(int value) {
-        this.value = value;
-    }
 }

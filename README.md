@@ -1,21 +1,21 @@
 # Denk-library
 
-Denk library is a restful crud system to manage a virtual book library. It was made because I want to learn and practicing Spring framework.
+Denk library is a restful crud system to manage a book library. It's not a production project. It was made to learn and to practice Spring framework.
 
 At this moment you can do:
 
   - List/Create/Get/Edit/Delete users.
   - List/Create/Get/Edit/Delete books and author books.
   - Add/Get/Change-Status borrow books.
-  - Access restricted interfaces with the correct Role using Basic Auth (see examples).
-  - Manipulate the login/logout. (Not yet)
+  - Access restricted interfaces with the correct Role using Basic Auth.
   
 Next step:
   
   - Unit tests.
-  - Visual interface?!
 
 ### Docker (Postgres and PgAdmin4)
+
+This project are using the Postgres database and the PgAdmin4 client. Both are running in docker containers that is possible to start using the follow command:
 
 ``
 docker-compose up
@@ -32,7 +32,9 @@ docker-compose up
 - User: postgres
 - Pass: admin
 
-_** To connect the PgAdmin container with the Postgres container, in the PgAdmin configuration we need to use `host: postgres_container` (the host is the container's name). The `localhost` or `127.0.0.1` does not work because in this case is connections between containers.
+_** To connect the PgAdmin container with the Postgres container, in the PgAdmin configuration we need to 
+use `host: postgres_container` (the host is the container's name). The `localhost` or `127.0.0.1` does 
+not work because in this case is connections between containers.
 
 #### Running SpringBoot app
 
@@ -48,10 +50,14 @@ PROD:
 
 `mvn spring-boot:run -Dspring.profiles.active=prod`
 
+### Graphical Interface
+
+Is not the objective of this project create a visual interface to manage the information. I have been working with web
+interfaces for long years and it's not a challenge for me. My main goal with this project is practice Spring features.
 
 ### cURL commands
 
-Ar this moment the project does't have graphical interface, so to try it you can use `curl` or Postman [https://www.getpostman.com/].
+To manage the web service we can use `curl` or Postman [https://www.getpostman.com/].
 
 #### Book
 | Action | COMMAND |
@@ -81,8 +87,8 @@ To use the API below it's necessary to add the user and password in the HEAD. Wi
 | ------ | ------ |
 | LIST | `curl -X GET --user admin:password localhost:8080/user/list -H 'Content-type:application/json'` |
 | GET | `curl -X GET --user admin:password localhost:8080/user/get/2 -H 'Content-type:application/json'` |
-| ADD |`curl -X PUT --user admin:password localhost:8080/user/add -H 'Content-type:application/json' -d '{"email":"sam@dwish.com", "firstName":"Samdwish","lastName":"Martelo","userRole":"LIBRARIAN","password":"xyxy2"}'` |
-| EDIT | `curl -X POST --user admin:password localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"email":"sambda@dwish.com", "firstName":"Samdba","lastName":"Pepsi","userRole":"LIBRARIAN","password":"xyxy2"}'` |
+| ADD |`curl -X PUT --user admin:password localhost:8080/user/add -H 'Content-type:application/json' -d '{"email":"sam@dwish.com", "firstName":"Samdwish","lastName":"Martelo","userRole":"ROLE_LIBRARIAN","password":"xyxy2", "enabled":true}'` |
+| EDIT | `curl -X POST --user admin:password localhost:8080/user/edit/3 -H 'Content-type:application/json' -d '{"email":"sambda@dwish.com", "firstName":"Samdba","lastName":"Pepsi","userRole":"ROLE_LIBRARIAN","password":"xyxy2", "enabled":true}'` |
 | DELETE | `curl -X DELETE --user admin:password localhost:8080/user/delete/2 -H 'Content-type:application/json'` |
 
 

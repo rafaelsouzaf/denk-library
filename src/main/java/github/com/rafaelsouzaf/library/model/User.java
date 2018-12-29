@@ -3,6 +3,7 @@ package github.com.rafaelsouzaf.library.model;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,36 +15,49 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     @Size(max=500)
     private String email;
 
-    @NotNull
+    @NotEmpty
     @Size(max=100)
     private String firstName;
 
-    @NotNull
+    @NotEmpty
     @Size(max=100)
     private String lastName;
 
     @NotNull
-    private UserRole userRole;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole = UserRole.ROLE_EVERYONE;
+
+    @NotEmpty
+    private String password;
 
     @NotNull
-    private String password;
+    private Boolean enabled;
 
     protected User() {}
 
-    public User(String email, String firstName, String lastName, String password, UserRole userRole) {
+    public User(String email, String firstName, String lastName, String password, UserRole userRole, boolean enabled) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userRole = userRole;
         this.setPassword(password);
+        this.enabled = enabled;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public void setId(Long id) {
@@ -90,4 +104,5 @@ public class User {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         this.password = encoder.encode(password);
     }
+
 }
