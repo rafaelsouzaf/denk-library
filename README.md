@@ -82,29 +82,29 @@ access control are in the table below.
 | ACTION                | ROLES             | cURL EXAMPLE
 | ------                | ------            | ------
 | LIST                  | -                 | `curl -X GET      localhost:8080/book/list`
-| LIST ORDER ASC        | -                 | `curl -X GET      localhost:8080/book/list/order/asc`
-| LIST ORDER DESC       | -                 | `curl -X GET      localhost:8080/book/list/order/desc`
+| LIST-ORDER-ASC        | -                 | `curl -X GET      localhost:8080/book/list/order/asc`
+| LIST-ORDER-DESC       | -                 | `curl -X GET      localhost:8080/book/list/order/desc`
 | GET                   | -                 | `curl -X GET      localhost:8080/book/get/6`
-| GET BY TITLE          | -                 | `curl -X GET      localhost:8080/book/get/title/book%20title`
-| GET BY EXACT TITLE    | -                 | `curl -X GET      localhost:8080/book/get/title/exact/book%20title%201`
-| ADD                   | Admin, Librarian  | `curl -X PUT      --user librarian@gmail.com:librarian    localhost:8080/book/add         -H 'Content-type:application/json'      -d '{"title":"Samdwish Book", "bookAuthor": [{"firstName":"Joanna", "lastName":"Fun"}] }'`
-| EDIT                  | Admin, Librarian  | `curl -X POST     --user librarian@gmail.com:librarian    localhost:8080/book/edit/6      -H 'Content-type:application/json'      -d '{"title":"Samdwish Book Edited"}'`
-| DELETE                | Admin, Librarian  | `curl -X DELETE   --user librarian@gmail.com:librarian    localhost:8080/book/delete/6`
+| GET-BY-TITLE          | -                 | `curl -X GET      localhost:8080/book/get/title/book%20title`
+| GET-BY-EXACT-TITLE    | -                 | `curl -X GET      localhost:8080/book/get/title/exact/book%20title%201`
+| ADD                   | Admin,Librarian   | `curl -X PUT      --user librarian@gmail.com:librarian    localhost:8080/book/add         -H 'Content-type:application/json'      -d '{"title":"Samdwish Book","bookAuthor":[{"firstName":"Joanna", "lastName":"Fun"}]}'`
+| EDIT                  | Admin,Librarian   | `curl -X POST     --user librarian@gmail.com:librarian    localhost:8080/book/edit/6      -H 'Content-type:application/json'      -d '{"title":"Samdwish Book Edited"}'`
+| DELETE                | Admin,Librarian   | `curl -X DELETE   --user librarian@gmail.com:librarian    localhost:8080/book/delete/6`
 
 #### Borrow Books
 
-| ACTION                | ROLES                         | cURL EXAMPLE
-| ------                | ------                        | ------
-| GET                   | Admin, Librarian, Visitor     | `curl -X GET      --user visitor@gmail.com:visitor    localhost:8080/borrow/get/1`
-| ADD                   | Admin, Librarian, Visitor     | `curl -X PUT      --user visitor@gmail.com:visitor    localhost:8080/borrow/add       -H 'Content-type:application/json'      -d '{"bookId": 5, "userId": 5, "status": "AVAILABLE"}'`
-| CHANGE STATUS         | Admin, Librarian, Visitor     | `curl -X POST     --user visitor@gmail.com:visitor    localhost:8080/borrow/change-status/1/RENTED`
+| ACTION                | ROLES                       | cURL EXAMPLE
+| ------                | ------                      | ------
+| GET                   | Admin,Librarian,Visitor     | `curl -X GET      --user visitor@gmail.com:visitor    localhost:8080/borrow/get/1`
+| ADD                   | Admin,Librarian,Visitor     | `curl -X PUT      --user visitor@gmail.com:visitor    localhost:8080/borrow/add       -H 'Content-type:application/json'      -d '{"bookId":5,"userId":5,"status":"AVAILABLE"}'`
+| CHANGE-STATUS         | Admin,Librarian,Visitor     | `curl -X POST     --user visitor@gmail.com:visitor    localhost:8080/borrow/change-status/1/RENTED`
 
 #### User Administration
 
 | ACTION                | ROLES             | cURL EXAMPLE
 | ------                | ------            | ------
-| LIST                  | Admin, Librarian  | `curl -X GET      --user admin@gmail.com:admin    localhost:8080/user/list`
-| GET                   | Admin, Librarian  | `curl -X GET      --user admin@gmail.com:admin    localhost:8080/user/get/2`
-| ADD                   | Admin             | `curl -X PUT      --user admin@gmail.com:admin    localhost:8080/user/add         -H 'Content-type:application/json'      -d '{"email":"sam@dwish.com", "firstName":"Samdwish","lastName":"Martelo","userRole":"ROLE_LIBRARIAN","password":"xyxy2","enabled":true}'`
-| EDIT                  | Admin             | `curl -X POST     --user admin@gmail.com:admin    localhost:8080/user/edit/3      -H 'Content-type:application/json'      -d '{"email":"sambda@dwish.com", "firstName":"Samdba","lastName":"Pepsi","userRole":"ROLE_LIBRARIAN","password":"xyxy2","enabled":true}'`
+| LIST                  | Admin,Librarian   | `curl -X GET      --user admin@gmail.com:admin    localhost:8080/user/list`
+| GET                   | Admin,Librarian   | `curl -X GET      --user admin@gmail.com:admin    localhost:8080/user/get/2`
+| ADD                   | Admin             | `curl -X PUT      --user admin@gmail.com:admin    localhost:8080/user/add         -H 'Content-type:application/json'      -d '{"email":"sam@dwish.com","firstName":"Samdwish","lastName":"Martelo","userRole":"ROLE_LIBRARIAN","password":"xyxy2","enabled":true}'`
+| EDIT                  | Admin             | `curl -X POST     --user admin@gmail.com:admin    localhost:8080/user/edit/3      -H 'Content-type:application/json'      -d '{"email":"sambda@dwish.com","firstName":"Samdba","lastName":"Pepsi","userRole":"ROLE_LIBRARIAN","password":"xyxy2","enabled":true}'`
 | DELETE                | Admin             | `curl -X DELETE   --user admin@gmail.com:admin    localhost:8080/user/delete/2`
