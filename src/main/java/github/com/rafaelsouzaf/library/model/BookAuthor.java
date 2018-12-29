@@ -3,6 +3,7 @@ package github.com.rafaelsouzaf.library.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
@@ -13,14 +14,14 @@ import java.util.Set;
 public class BookAuthor {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     @Size(max=100)
     private String firstName;
 
-    @NotNull
+    @NotEmpty
     @Size(max=100)
     private String lastName;
 

@@ -9,18 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/user")
-@Secured("ROLE_ADMIN")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/list")
+    @Secured({"ROLE_ADMIN", "ROLE_LIBRARIAN"})
     public Iterable<User> findAll() {
         return userRepository.findAll();
     }
 
     @GetMapping("/get/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_LIBRARIAN"})
     public User get(@PathVariable Long id) throws UserNotFoundException {
         return userRepository
                 .findById(id)
@@ -28,14 +29,17 @@ public class UserController {
     }
 
     @PutMapping("/add")
+    @Secured("ROLE_ADMIN")
     public User add(@RequestBody User user) {
         return userRepository.save(user);
     }
 
     @PostMapping("/edit/{id}")
+    @Secured("ROLE_ADMIN")
     public User edit(@RequestBody User newUser, @PathVariable Long id ) throws UserNotFoundException {
         return userRepository.findById(id)
                 .map(user -> {
+                    user.setEmail(newUser.getEmail());
                     user.setFirstName(newUser.getFirstName());
                     user.setLastName(newUser.getLastName());
                     user.setUserRole(newUser.getUserRole());
@@ -45,6 +49,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @Secured("ROLE_ADMIN")
     public void delete(@PathVariable Long id) throws UserNotFoundException {
         if (!userRepository.existsById(id)) {
             throw new UserNotFoundException(id);
