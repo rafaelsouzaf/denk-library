@@ -14,6 +14,7 @@ At this moment you can do:
 Next step:
   
   - Unit tests.
+  - OAuth? Basic Auth is bad, but maybe OAuth is too much for now.
 
 ### Docker (Postgres and PgAdmin4)
 
