@@ -35,9 +35,9 @@ public class RolesSecurityTest extends WebAppConfigTest {
                 new WebService(HttpMethod.GET, "/book/get/6", null),
                 new WebService(HttpMethod.GET, "/book/get/title/book title", null),
                 new WebService(HttpMethod.GET, "/book/get/title/exact/book title 1", null),
-                new WebService(HttpMethod.PUT, "/book/add", Arrays.asList(UserRole.ROLE_ADMIN, UserRole.ROLE_LIBRARIAN), "{\"title\":\"Samdwish Book\",\"bookAuthor\":[{\"firstName\":\"Joanna\", \"lastName\":\"Fun\"}]}")
-//                new WebService(HttpMethod.POST, "/book/edit/6", Arrays.asList(UserRole.ROLE_ADMIN, UserRole.ROLE_LIBRARIAN), "{\"title\":\"Samdwish Book Edited\"}"),
-//                new WebService(HttpMethod.DELETE, "/book/delete/6", Arrays.asList(UserRole.ROLE_ADMIN, UserRole.ROLE_LIBRARIAN))
+                new WebService(HttpMethod.PUT, "/book/add", Arrays.asList(UserRole.ROLE_ADMIN, UserRole.ROLE_LIBRARIAN), "{\"title\":\"Samdwish Book\",\"bookAuthor\":[{\"firstName\":\"Joanna\", \"lastName\":\"Fun\"}]}"),
+                new WebService(HttpMethod.POST, "/book/edit/1", Arrays.asList(UserRole.ROLE_ADMIN, UserRole.ROLE_LIBRARIAN), "{\"title\":\"Samdwish Book Edited\"}"),
+                new WebService(HttpMethod.DELETE, "/book/delete/2", Arrays.asList(UserRole.ROLE_ADMIN, UserRole.ROLE_LIBRARIAN))
         );
 
     }
@@ -59,10 +59,6 @@ public class RolesSecurityTest extends WebAppConfigTest {
                 MockHttpServletRequestBuilder builder = request(service.METHOD, service.URL);
                 builder.contentType(MediaType.APPLICATION_JSON_UTF8);
 
-                if (service.BODY != null) {
-                    builder.content(service.BODY);
-                }
-
                 mvc.perform(builder)
                         .andExpect(status().isOk());
 
@@ -71,7 +67,9 @@ public class RolesSecurityTest extends WebAppConfigTest {
 
                     MockHttpServletRequestBuilder builder = request(service.METHOD, service.URL);
                     builder.contentType(MediaType.APPLICATION_JSON);
-
+                    if (service.BODY != null) {
+                        builder.content(service.BODY);
+                    }
 
                     if (userRole == UserRole.ROLE_ADMIN) {
                         System.out.println("----------------------- UserRole.ROLE_ADMIN");
@@ -94,8 +92,6 @@ public class RolesSecurityTest extends WebAppConfigTest {
                 }
             }
 
-
-
         }
 
 //        mvc.perform(
@@ -105,6 +101,14 @@ public class RolesSecurityTest extends WebAppConfigTest {
 //                .andExpect(status().isOk());
 //                .andExpect(jsonPath("$", hasSize(6)))
 //                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+    }
+
+    private MockHttpServletRequestBuilder buildGenerator() {
+
+
+        return null;
+
 
     }
 
