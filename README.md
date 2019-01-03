@@ -1,8 +1,8 @@
 # Denk-library
 
 Denk-Library is a RESTful CRUD web service to manage a book library. This is not a production 
-project and it's not complete. It's not my goal here to make a _real_ software. This software was made 
-just to learn and to practice Spring framework technologies.
+project and it's not complete. It's not my goal here to make a _real_ software. This software 
+was made in my free time just to learn and to practice Spring framework technologies.
 
 At this moment you can do:
 
@@ -14,7 +14,7 @@ At this moment you can do:
 Next step:
   
   - Unit tests.
-  - OAuth? Basic Auth is bad, but maybe OAuth is too much for now.
+  - OAuth? The current Basic Auth is bad, but maybe OAuth is too much for now.
 
 ### Docker (Postgres and PgAdmin4)
 
