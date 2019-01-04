@@ -15,6 +15,11 @@ public enum UserRole {
     /**
      * Can lend a book
      */
-    ROLE_VISITOR
+    ROLE_VISITOR,
+
+    /**
+     * Everybody
+     */
+    ROLE_ANONYMOUS
 
 }
