@@ -10,7 +10,7 @@ At this moment you can do:
   - Manage books and author's.
   - Borrow books.
   - Access restricted interfaces using Basic Auth.
-  - Execute tests. Mainly related with security roles that is generated dynamically.
+  - Execute tests. A few tests related with security roles that is generated [dynamically](https://github.com/rafaelsouzaf/denk-library/blob/master/src/test/java/github/com/rafaelsouzaf/library/RolesSecurityTest.java).
   
 Next step:
   
