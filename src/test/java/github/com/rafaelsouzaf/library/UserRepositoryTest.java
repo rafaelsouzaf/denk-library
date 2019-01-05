@@ -36,7 +36,6 @@ public class UserRepositoryTest extends WebAppConfigTest {
                 get("/book/list")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(6)))
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
