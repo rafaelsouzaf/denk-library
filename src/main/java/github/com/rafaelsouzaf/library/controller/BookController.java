@@ -4,6 +4,8 @@ import github.com.rafaelsouzaf.library.exception.BookNotFoundException;
 import github.com.rafaelsouzaf.library.model.Book;
 import github.com.rafaelsouzaf.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -109,11 +111,12 @@ public class BookController {
 
     @DeleteMapping("/delete/{id}")
     @Secured({"ROLE_ADMIN", "ROLE_LIBRARIAN"})
-    public void delete(@PathVariable Long id) throws BookNotFoundException {
+    public ResponseEntity<Void> delete(@PathVariable Long id) throws BookNotFoundException {
         if (!bookRepository.existsById(id)) {
             throw new BookNotFoundException(id);
         }
         bookRepository.deleteById(id);
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).build();
     }
 
 }
