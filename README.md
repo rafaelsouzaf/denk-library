@@ -10,11 +10,13 @@ At this moment you can do:
   - Manage books and author's.
   - Borrow books.
   - Access restricted interfaces using Basic Auth.
+  - Execute tests. Mainly related with security roles that is generated dynamically.
   
 Next step:
   
-  - Unit tests.
+  - More tests?
   - OAuth? The current Basic Auth is bad, but maybe OAuth is too much for now.
+  - Something more?
 
 ### Docker (Postgres and PgAdmin4)
 
